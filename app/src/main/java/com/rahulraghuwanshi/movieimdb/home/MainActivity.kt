@@ -1,0 +1,41 @@
+package com.rahulraghuwanshi.movieimdb
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_main)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+
+        val etSearch = findViewById<EditText>(R.id.etSearch)
+
+        findViewById<Button>(R.id.btnSearch).setOnClickListener {
+            val searchText = etSearch.text.trim().toString()
+
+            if (searchText.isNotEmpty()){
+
+            }else {
+                Toast.makeText(this,"Please Enter Movie Name",Toast.LENGTH_SHORT).show()
+            }
+
+        }
+    }
+}
