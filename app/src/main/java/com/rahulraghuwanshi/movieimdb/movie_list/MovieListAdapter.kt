@@ -11,7 +11,8 @@ import com.rahulraghuwanshi.imdb_api.model.Search
 import com.rahulraghuwanshi.movieimdb.R
 
 class MovieListAdapter(
-    private val list: List<Search?>
+    private val list: List<Search?>,
+    private val onClick: (String?) -> Unit
 ) : RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListViewHolder {
@@ -32,6 +33,9 @@ class MovieListAdapter(
 
         Glide.with(holder.itemView.context).load(movie?.Poster).into(holder.imgMovie)
 
+        holder.itemView.setOnClickListener {
+            onClick(movie?.imdbID)
+        }
     }
 
 

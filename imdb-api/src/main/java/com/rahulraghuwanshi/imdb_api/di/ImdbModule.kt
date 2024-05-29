@@ -7,9 +7,9 @@ import com.rahulraghuwanshi.imdb_api.data.repository.datasource.ImdbRemoteDataSo
 import com.rahulraghuwanshi.imdb_api.data.repository.datasourceImpl.ImdbRemoteDataSourceImpl
 import com.rahulraghuwanshi.imdb_api.domain.repository.MovieRepository
 import com.rahulraghuwanshi.imdb_api.domain.use_case.GetMovieListUseCase
-import com.rahulraghuwanshi.imdb_api.domain.use_case.GetMovieUseCase
+import com.rahulraghuwanshi.imdb_api.domain.use_case.GetMovieDetailUseCase
 import com.rahulraghuwanshi.imdb_api.domain.use_case.impl.GetMovieListUseCaseImpl
-import com.rahulraghuwanshi.imdb_api.domain.use_case.impl.GetMovieUseCaseImpl
+import com.rahulraghuwanshi.imdb_api.domain.use_case.impl.GetMovieDetailUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,8 +27,8 @@ class ImdbModule {
 
     @Provides
     @Singleton
-    fun provideGetMovieUseCase(movieRepository: MovieRepository): GetMovieUseCase {
-        return GetMovieUseCaseImpl(movieRepository)
+    fun provideGetMovieUseCase(movieRepository: MovieRepository): GetMovieDetailUseCase {
+        return GetMovieDetailUseCaseImpl(movieRepository)
     }
 
     @Provides

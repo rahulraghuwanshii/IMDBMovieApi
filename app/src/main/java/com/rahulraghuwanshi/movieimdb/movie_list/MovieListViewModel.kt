@@ -1,6 +1,5 @@
 package com.rahulraghuwanshi.movieimdb.movie_list
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rahulraghuwanshi.imdb_api.domain.use_case.GetMovieListUseCase
@@ -22,10 +21,8 @@ class MovieListViewModel @Inject constructor(
 
     fun fetchMovieList(movieName: String) {
         viewModelScope.launch {
-            Log.d("MAJAMA", "fetchMovieList: ")
             getMovieListUseCase.invoke(movieName).collectLatest {
                 _movieListFlow.emit(it)
-                Log.d("MAJAMA", "fetchMovieList() called $it")
             }
         }
     }

@@ -1,10 +1,10 @@
 package com.rahulraghuwanshi.imdb_api.domain.use_case.impl
 
 import com.rahulraghuwanshi.imdb_api.domain.repository.MovieRepository
-import com.rahulraghuwanshi.imdb_api.domain.use_case.GetMovieUseCase
+import com.rahulraghuwanshi.imdb_api.domain.use_case.GetMovieDetailUseCase
 
-internal class GetMovieUseCaseImpl(
+internal class GetMovieDetailUseCaseImpl(
     private val movieRepository: MovieRepository
-) : GetMovieUseCase {
+) : GetMovieDetailUseCase {
     override suspend fun invoke(imdbId: String) = movieRepository.getMovieDetail(imdbId)
 }

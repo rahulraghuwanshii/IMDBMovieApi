@@ -1,7 +1,7 @@
 package com.rahulraghuwanshi.movieimdb.movie_list
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rahulraghuwanshi.imdb_api.model.Search
 import com.rahulraghuwanshi.imdb_api.util.RestClientResult
 import com.rahulraghuwanshi.movieimdb.R
+import com.rahulraghuwanshi.movieimdb.movie_detail.MovieDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -35,7 +36,6 @@ class MovieListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("MAJAMA", "onCreate:")
         enableEdgeToEdge()
         setContentView(R.layout.activity_movie_list)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -54,7 +54,7 @@ class MovieListActivity : AppCompatActivity() {
             Toast.makeText(this, "NO movie name found", Toast.LENGTH_SHORT).show()
         }
 
-        observeFlow()
+        collectFlow()
     }
 
     private fun setUpUi(movieName: String?) {
@@ -68,7 +68,7 @@ class MovieListActivity : AppCompatActivity() {
         toolbar.setTitle("Search Result for: $movieName")
     }
 
-    private fun observeFlow() {
+    private fun collectFlow() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 movieListViewModel.movieListFlow.collectLatest {
@@ -90,6 +90,7 @@ class MovieListActivity : AppCompatActivity() {
 
                         RestClientResult.Status.ERROR -> {
                             progressBar.isVisible = false
+                            Toast.makeText(this@MovieListActivity,"Something went wrong!!",Toast.LENGTH_SHORT).show()
                         }
 
                         RestClientResult.Status.LOADING -> {
@@ -106,11 +107,27 @@ class MovieListActivity : AppCompatActivity() {
 
     private fun setUpRecyclerView(list: List<Search?>) {
 
-        movieListAdapter = MovieListAdapter(list)
+        movieListAdapter = MovieListAdapter(
+            list,
+            onClick = {
+                openMovieDetailActivity(it)
+            }
+        )
 
         val rvMovieList = findViewById<RecyclerView>(R.id.rvMovieList)
         rvMovieList.adapter = movieListAdapter
         rvMovieList.layoutManager = LinearLayoutManager(this)
 
+    }
+
+    private fun openMovieDetailActivity(imdbId: String?) {
+        if (imdbId != null) {
+
+            val intent = Intent(this, MovieDetailActivity::class.java)
+            intent.putExtra("imdbId", imdbId)
+            startActivity(intent)
+        } else {
+            Toast.makeText(this, "ImdbId is required", Toast.LENGTH_SHORT).show()
+        }
     }
 }
