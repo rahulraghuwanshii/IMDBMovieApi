@@ -1,4 +1,4 @@
-package com.rahulraghuwanshi.imdb_api.model
+package com.priyanshub.swiggyapp.data.model
 
 data class Rating(
     val Source: String,
