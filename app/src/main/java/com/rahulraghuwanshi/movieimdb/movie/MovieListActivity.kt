@@ -11,7 +11,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
-import com.rahulraghuwanshi.imdb_api.model.Movie
+import com.rahulraghuwanshi.imdb_api.model.MovieResponse
+import com.rahulraghuwanshi.imdb_api.model.Search
 import com.rahulraghuwanshi.movieimdb.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -62,7 +63,7 @@ class MovieListActivity : AppCompatActivity() {
     }
 
 
-    private fun setUpRecyclerView(list: List<Movie?>) {
+    private fun setUpRecyclerView(list: List<Search?>) {
 
         movieListAdapter = MovieListAdapter(list)
 

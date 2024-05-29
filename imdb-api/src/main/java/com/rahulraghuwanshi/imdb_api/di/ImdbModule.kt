@@ -1,8 +1,10 @@
 package com.rahulraghuwanshi.imdb_api.di
 
 import com.rahulraghuwanshi.imdb_api.constants.ApiConstants.BASE_URL
-import com.rahulraghuwanshi.imdb_api.data.MovieDataSource
-import com.rahulraghuwanshi.imdb_api.data.MovieRepositoryImpl
+import com.rahulraghuwanshi.imdb_api.data.network.MovieApiInterface
+import com.rahulraghuwanshi.imdb_api.data.repository.MovieRepositoryImpl
+import com.rahulraghuwanshi.imdb_api.data.repository.datasource.ImdbRemoteDataSource
+import com.rahulraghuwanshi.imdb_api.data.repository.datasourceImpl.ImdbRemoteDataSourceImpl
 import com.rahulraghuwanshi.imdb_api.domain.repository.MovieRepository
 import com.rahulraghuwanshi.imdb_api.domain.use_case.GetMovieListUseCase
 import com.rahulraghuwanshi.imdb_api.domain.use_case.GetMovieUseCase
@@ -37,8 +39,14 @@ class ImdbModule {
 
     @Provides
     @Singleton
-    fun provideMovieRepository(movieDataSource: MovieDataSource): MovieRepository {
-        return MovieRepositoryImpl(movieDataSource)
+    fun provideMovieRepository(imdbRemoteDataSource: ImdbRemoteDataSource): MovieRepository {
+        return MovieRepositoryImpl(imdbRemoteDataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun provideImdbRemoteDataSource(movieApiInterface: MovieApiInterface): ImdbRemoteDataSource {
+        return ImdbRemoteDataSourceImpl(movieApiInterface)
     }
 
     @Singleton
@@ -71,8 +79,8 @@ class ImdbModule {
 
     @Singleton
     @Provides
-    fun provideService(retrofit: Retrofit): MovieDataSource =
-        retrofit.create(MovieDataSource::class.java)
+    fun provideService(retrofit: Retrofit): MovieApiInterface =
+        retrofit.create(MovieApiInterface::class.java)
 
 
 }

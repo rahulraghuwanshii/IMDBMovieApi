@@ -19,10 +19,10 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
-        android:id="@+id/txtImdbRating"
+        android:id="@+id/txtImdbTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="IMDB Rating : 4"
+        tools:text="IMDB Title : 4"
         android:layout_marginTop="4dp"
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/txtImdbID"
@@ -30,13 +30,13 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
-        android:id="@+id/txtDirectorName"
+        android:id="@+id/txtYear"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:text="Director Name : Rajesh"
         android:layout_marginTop="4dp"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/txtImdbRating"
+        app:layout_constraintTop_toBottomOf="@id/txtImdbTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,11 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.rahulraghuwanshi.imdb_api.model.Movie
+import com.rahulraghuwanshi.imdb_api.model.Search
 import com.rahulraghuwanshi.movieimdb.R
 
 class MovieListAdapter(
-    private val list: List<Movie?>
+    private val list: List<Search?>
 ) : RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListViewHolder {
@@ -25,21 +25,21 @@ class MovieListAdapter(
         val movie = list[position]
 
         holder.txtImdbId.text = "Imdb ID: ${movie?.imdbID}"
-        holder.txtImdbRating.text = "Imdb Rating: ${movie?.imdbRating}"
-        holder.txtImdbDirectorName.text = "Director: ${movie?.Director}"
+        holder.txtImdbTitle.text = "Imdb Title: ${movie?.Title}"
+        holder.txtImdbYear.text = "Year: ${movie?.Year}"
     }
 
 
     class MovieListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         lateinit var txtImdbId: TextView
-        lateinit var txtImdbRating: TextView
-        lateinit var txtImdbDirectorName: TextView
+        lateinit var txtImdbTitle: TextView
+        lateinit var txtImdbYear: TextView
 
         init {
             // Define click listener for the ViewHolder's View
             txtImdbId = view.findViewById(R.id.txtImdbID)
-            txtImdbRating = view.findViewById(R.id.txtImdbRating)
-            txtImdbDirectorName = view.findViewById(R.id.txtDirectorName)
+            txtImdbTitle = view.findViewById(R.id.txtImdbTitle)
+            txtImdbYear = view.findViewById(R.id.txtYear)
         }
     }
 }

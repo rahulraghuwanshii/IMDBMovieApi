@@ -1,5 +1,4 @@
-package com.priyanshub.swiggyapp.data.model
-
+package com.rahulraghuwanshi.imdb_api.model
 data class MovieDetail(
     val Actors: String,
     val Awards: String,

@@ -6,5 +6,5 @@ import com.rahulraghuwanshi.imdb_api.domain.use_case.GetMovieUseCase
 internal class GetMovieUseCaseImpl(
     private val movieRepository: MovieRepository
 ) : GetMovieUseCase {
-    override suspend fun invoke(id: String) = movieRepository.getMovieDetail(id)
+    override suspend fun invoke(imdbId: String) = movieRepository.getMovieDetail(imdbId)
 }

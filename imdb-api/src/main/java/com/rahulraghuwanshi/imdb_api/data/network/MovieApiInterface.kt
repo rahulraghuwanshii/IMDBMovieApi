@@ -6,7 +6,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface MovieApiRequest {
+interface MovieApiInterface {
 
     companion object {
         const val BASE_URL = "https://www.omdbapi.com/"
@@ -14,10 +14,9 @@ interface MovieApiRequest {
     }
 
     @GET("/")
-    suspend fun getMovies(
+    suspend fun getMoviesList(
         @Query("s") search: String,
         @Query("apiKey") apiKey: String = API_KEY,
-        @Query("page") page: Int = 1
     ) : Response<MovieResponse>
 
 
