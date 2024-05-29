@@ -1,4 +1,4 @@
-package com.rahulraghuwanshi.movieimdb.movie
+package com.rahulraghuwanshi.movieimdb.movie_list
 
 import android.os.Bundle
 import android.util.Log
@@ -7,12 +7,14 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rahulraghuwanshi.imdb_api.model.Search
 import com.rahulraghuwanshi.imdb_api.util.RestClientResult
@@ -42,9 +44,9 @@ class MovieListActivity : AppCompatActivity() {
             insets
         }
 
-        progressBar = findViewById<ProgressBar>(R.id.progressbar)
 
         val movieName = intent.getStringExtra("movieName")
+        setUpUi(movieName)
         if (movieName != null) {
             movieListViewModel.fetchMovieList(movieName)
         } else {
@@ -55,6 +57,17 @@ class MovieListActivity : AppCompatActivity() {
         observeFlow()
     }
 
+    private fun setUpUi(movieName: String?) {
+        progressBar = findViewById(R.id.progressbar)
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
+
+        toolbar.setTitle("Search Result for: $movieName")
+    }
+
     private fun observeFlow() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -63,22 +76,23 @@ class MovieListActivity : AppCompatActivity() {
                         RestClientResult.Status.SUCCESS -> {
                             progressBar.isVisible = false
 
-                            Log.d("MAJAMA", "observeFlow: SUCCESS")
                             val searchList = it.data?.Search
                             if (!searchList.isNullOrEmpty()) {
                                 setUpRecyclerView(searchList)
                             } else {
-                                Toast.makeText(this@MovieListActivity, "No movie found", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@MovieListActivity,
+                                    "No movie found",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
 
                         RestClientResult.Status.ERROR -> {
-                            Log.d("MAJAMA", "observeFlow: ERROR")
                             progressBar.isVisible = false
                         }
 
                         RestClientResult.Status.LOADING -> {
-                            Log.d("MAJAMA", "observeFlow: LOADING")
                             progressBar.isVisible = true
                         }
 
@@ -96,5 +110,7 @@ class MovieListActivity : AppCompatActivity() {
 
         val rvMovieList = findViewById<RecyclerView>(R.id.rvMovieList)
         rvMovieList.adapter = movieListAdapter
+        rvMovieList.layoutManager = LinearLayoutManager(this)
+
     }
 }

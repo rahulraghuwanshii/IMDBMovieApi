@@ -1,4 +1,4 @@
-package com.rahulraghuwanshi.movieimdb.movie
+package com.rahulraghuwanshi.movieimdb.movie_list
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

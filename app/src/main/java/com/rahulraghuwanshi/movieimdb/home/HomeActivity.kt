@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.rahulraghuwanshi.movieimdb.R
-import com.rahulraghuwanshi.movieimdb.movie.MovieListActivity
+import com.rahulraghuwanshi.movieimdb.movie_list.MovieListActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

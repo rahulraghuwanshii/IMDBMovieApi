@@ -1,10 +1,12 @@
-package com.rahulraghuwanshi.movieimdb.movie
+package com.rahulraghuwanshi.movieimdb.movie_list
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.rahulraghuwanshi.imdb_api.model.Search
 import com.rahulraghuwanshi.movieimdb.R
 
@@ -24,9 +26,12 @@ class MovieListAdapter(
     override fun onBindViewHolder(holder: MovieListViewHolder, position: Int) {
         val movie = list[position]
 
-        holder.txtImdbId.text = "Imdb ID: ${movie?.imdbID}"
-        holder.txtImdbTitle.text = "Imdb Title: ${movie?.Title}"
+        holder.txtImdbId.text = "ID: ${movie?.imdbID}"
+        holder.txtImdbTitle.text = "Title: ${movie?.Title}"
         holder.txtImdbYear.text = "Year: ${movie?.Year}"
+
+        Glide.with(holder.itemView.context).load(movie?.Poster).into(holder.imgMovie)
+
     }
 
 
@@ -34,12 +39,14 @@ class MovieListAdapter(
         lateinit var txtImdbId: TextView
         lateinit var txtImdbTitle: TextView
         lateinit var txtImdbYear: TextView
+        lateinit var imgMovie: ImageView
 
         init {
             // Define click listener for the ViewHolder's View
             txtImdbId = view.findViewById(R.id.txtImdbID)
             txtImdbTitle = view.findViewById(R.id.txtImdbTitle)
             txtImdbYear = view.findViewById(R.id.txtYear)
+            imgMovie = view.findViewById(R.id.imgMovie)
         }
     }
 }
