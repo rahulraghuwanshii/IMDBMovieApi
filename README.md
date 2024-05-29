@@ -2,14 +2,14 @@
 
 <table>
 <tr>
- <td> <img src = "https://github.com/rahullraghuwanshi/StarWar/assets/52368582/3cb75a44-3c99-4cb1-8540-b36d5c6c9fb2" width="300" height="600" ></td>
-<td><img src = "https://github.com/rahullraghuwanshi/StarWar/assets/52368582/fceb657e-4fb3-4c5e-8e6b-eb4ec87238b0" width="300" height="600" ></td>
-<td> <img src = "https://github.com/rahullraghuwanshi/StarWar/assets/52368582/804053c0-0c7e-4e27-8624-df87527554a9" width="300" height="600" ></td>
+ <td> <img src = "https://github.com/rahulraghuwanshii/IMDBMovieApi/assets/52368582/904f8c53-cc38-4494-ad89-04427e28514b" width="300" height="600" ></td>
+ <td> <img src = "https://github.com/rahulraghuwanshii/IMDBMovieApi/assets/52368582/5c6fdfd7-4db2-40c7-8959-e53829f2df7d" width="300" height="600" ></td>
+  <td> <img src = "https://github.com/rahulraghuwanshii/IMDBMovieApi/assets/52368582/56204561-ed3f-40b8-901c-fb0397afcdac" width="300" height="600" ></td>
 </tr>
 
 <tr>
-<td align="center">Splash Screen</td>
-<td align="center">Character List Screen</td>
-<td align="center">Character Detail Screen</td>
+<td align="center">Search Screen</td>
+<td align="center">Movie List Screen</td>
+<td align="center">Movie Detail Screen</td>
 </tr>
 </table>
