@@ -1,13 +1,13 @@
-package com.rahulraghuwanshi.imdb_api.domain
+package com.rahulraghuwanshi.imdb_api.domain.repository
 
 import com.rahulraghuwanshi.imdb_api.model.Movie
-import retrofit2.Call
+import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
 
 
-    fun groupMovieList(key: String, char: String): Call<List<Movie?>?>
+    suspend fun groupMovieList(key: String, char: String): Flow<List<Movie?>?>
 
-    fun getMovieDetail(id: String): Movie
+    suspend fun getMovieDetail(id: String): Flow<Movie>
 
 }

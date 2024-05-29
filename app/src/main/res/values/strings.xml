@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MovieIMDB</string>
+    <string name="type_movie_name">Type Movie Name</string>
 </resources>

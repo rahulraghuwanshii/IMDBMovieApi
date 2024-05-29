@@ -1,5 +1,6 @@
-package com.rahulraghuwanshi.movieimdb
+package com.rahulraghuwanshi.movieimdb.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -8,6 +9,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.rahulraghuwanshi.movieimdb.R
+import com.rahulraghuwanshi.movieimdb.movie.MovieListActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,12 +33,20 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnSearch).setOnClickListener {
             val searchText = etSearch.text.trim().toString()
 
-            if (searchText.isNotEmpty()){
-
-            }else {
-                Toast.makeText(this,"Please Enter Movie Name",Toast.LENGTH_SHORT).show()
+            if (searchText.isNotEmpty()) {
+                openMovieListScreen(searchText)
+            } else {
+                Toast.makeText(this, "Please Enter Movie Name", Toast.LENGTH_SHORT).show()
             }
 
         }
+    }
+
+    private fun openMovieListScreen(movieName: String) {
+        val intent = Intent(this, MovieListActivity::class.java)
+        intent.putExtra("movieName", movieName)
+
+        startActivity(intent)
+
     }
 }
